@@ -1,10 +1,10 @@
-// Copyright 2020 Google Inc.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//     https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,15 +20,15 @@ using System;
 public class MoveFileSample
 {
     public void MoveFile(
-        string sourceBucketName = "your-unique-bucket-name",
+        string sourceBucketName = "your-source-bucket-name",
         string sourceObjectName = "your-object-name",
-        string targetBucketName = "target-object-bucket",
-        string targetObjectName = "target-object-name")
+        string destinationBucketName = "your-destination-bucket-name",
+        string destinationObjectName = "your-new-object-name")
     {
         var storage = StorageClient.Create();
-        storage.CopyObject(sourceBucketName, sourceObjectName, targetBucketName, targetObjectName);
-        storage.DeleteObject(sourceBucketName, sourceObjectName);
-        Console.WriteLine($"Moved {sourceObjectName} to {targetObjectName}.");
+        storage.MoveObject(sourceBucketName, sourceObjectName, destinationBucketName, destinationObjectName);
+
+        Console.WriteLine($"Moved {sourceObjectName} from {sourceBucketName} to {destinationObjectName} in {destinationBucketName}.");
     }
 }
 // [END storage_move_file]
